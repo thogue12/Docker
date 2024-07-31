@@ -1,0 +1,14 @@
+services:
+  jenkins:
+    container_name: my-jenkins-con
+    image: my-jenkins-image
+    cpus: 2.5
+    mem_limit: 4084m
+    ports:
+      - "5000:5000"
+      - "8080:8080"  # Corrected port mapping
+    volumes:
+      - jenkins_home:/var/jenkins_home  # Use named volume
+
+volumes:
+  jenkins_home:
