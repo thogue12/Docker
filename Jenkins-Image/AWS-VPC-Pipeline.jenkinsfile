@@ -2,26 +2,12 @@ pipeline {
     agent any
     environment {
         AWS_DEFAULT_REGION = 'us-west-1'
-        THE_STUFF_LEGEND = credentials('terraform-user')
-        GIT_CREDS = credentials('github-credentials')
-        GITHUB_TOKEN = credentials('github-token') // The variable name here does not matter, because the value is associated with the ID of terraform-user
+        THE_STUFF_LEGEND = credentials('AWS-Credentials')
+        GIT_CREDS = credentials('GitHub-Creds')
+        GITHUB_TOKEN = credentials('Github-Token') // The variable name here does not matter, because the value is associated with the ID of terraform-user
     }
     stages {
-        stage('Install Terraform') {
-            steps {
-                script {
-                    def terraformVersion = '1.9.3'
-                    sh """
-                    if ! command -v terraform &> /dev/null
-                    then
-                        curl -LO https://releases.hashicorp.com/terraform/${terraformVersion}/terraform_${terraformVersion}_linux_amd64.zip
-                        unzip terraform_${terraformVersion}_linux_amd64.zip
-                        mkdir -p /usr/local/bin/
-          
-                    fi
-                    """
-                }
-            }
+            
         }
         stage('Checkout') {
             steps {
@@ -49,5 +35,5 @@ pipeline {
             cleanWs()
         }
     }
-}
+
 

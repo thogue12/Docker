@@ -1,0 +1,10 @@
+
+services:
+    broken-rekordd:
+      container_name: broken-rekordd
+      image: thogue12/broken-rekordd
+      cpus: 2.5
+      mem_limit: 4084m
+      ports:
+        - "443:443"
+        - "8080:80"
