@@ -1,0 +1,47 @@
+to run the dockerfile.
+
+docker build <givefilename> .
+
+run these commands after the dockerfile
+
+docker run -d \
+  --name my-jenkins-container \
+  -p 8080:8080 \
+  -p 50000:50000 \
+  -v jenkins_home:/var/jenkins_home \
+  my-jenkins-image
+
+#####----------------------------------------------------------########
+
+Explained:
+
+PART1:
+ - Defining the pipeline
+    - AGENT determines which OS or anything you would be using to run the pipeline
+        - MacOS, Windows, Linux, etc
+    - ENV Variables:
+        - In order for this pipeline to work we have to establish some credentials
+        - credentials from AWS, in order to access it's API and authenticate with our user.
+            - USE: Access Key ID, Secrete Key ID
+        - CREDENTIALS for github:
+            - We also need to establish github credentials with the personal API
+
+PART2:
+ - STAGES:  
+    - Pipelines are broken up into stages
+    - stage:
+        - Installs the most recent version of Terraform
+
+    - stage2:
+        - get the code from github
+        - use the github api token
+        - specify which branch
+    
+    -stage3:
+        - Terraform init
+    
+    -stage4:
+        - Terraform plan
+
+    -stage5:
+        - Terraform apply -auto-approve

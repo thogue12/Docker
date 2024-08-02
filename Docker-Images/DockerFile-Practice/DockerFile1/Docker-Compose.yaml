@@ -1,0 +1,8 @@
+services:
+  ubuntu:
+    container_name: smooth-ubuntu
+    image: smooth-ubuntu
+    cpus: 2.5
+    mem_limit: 6MB
+    ports: 
+      - 88:80
